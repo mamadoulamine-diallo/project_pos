@@ -1,7 +1,17 @@
 CREATE DATABASE IF NOT EXISTS project_pos CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
-USE project_pos;
+CREATE USER IF NOT EXISTS 'lamine' @'localhost' IDENTIFIED BY '*******';
 
+GRANT
+SELECT,
+INSERT
+,
+UPDATE,
+DELETE ON project_pos.* TO 'lamine' @'localhost';
+
+FLUSH PRIVILEGES;
+
+USE project_pos;
 
 DROP TABLE IF EXISTS sale_item;
 
@@ -14,7 +24,6 @@ DROP TABLE IF EXISTS product;
 DROP TABLE IF EXISTS category;
 
 DROP TABLE IF EXISTS user;
-
 
 -- =========================
 -- TABLE: user
